@@ -1,4 +1,4 @@
-// LANGUAGE_VERSION: 1.3
+// !LANGUAGE: +ProperIeee754Comparisons
 // IGNORE_BACKEND: JS
 
 fun eqDI(x: Any?, y: Any?) = x is Double?   && y is Int?        && x == y
