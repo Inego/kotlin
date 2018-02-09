@@ -11,17 +11,12 @@ class JUnitContributor : AsserterContributor {
         return if (hasJUnitInClassPath) JUnitAsserter else null
     }
 
-    private val hasJUnitInClassPath by lazy {
-        try {
-            executeAssert()
-            true
-        } catch (_: ClassNotFoundException) {
-            false
-        }
+    private val hasJUnitInClassPath = try {
+        Class.forName("org.junit.Assert")
+        true
+    } catch (_: ClassNotFoundException) {
+        false
     }
-
-    private fun executeAssert() = org.junit.Assert.assertTrue(true)
-
 }
 
 /**

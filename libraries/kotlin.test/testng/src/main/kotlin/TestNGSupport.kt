@@ -16,16 +16,12 @@ class TestNGContributor : AsserterContributor {
         return if (hasTestNGInClassPath) TestNGAsserter else null
     }
 
-    private val hasTestNGInClassPath by lazy {
-        try {
-            executeAssert()
-            true
-        } catch (_: ClassNotFoundException) {
-            false
-        }
+    private val hasTestNGInClassPath = try {
+        Class.forName("org.testng.Assert")
+        true
+    } catch (_: ClassNotFoundException) {
+        false
     }
-
-    private fun executeAssert() = org.testng.Assert.assertTrue(true)
 }
 
 /**
